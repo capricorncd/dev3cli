@@ -1,6 +1,6 @@
 {
   "name": "dev3cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -15,7 +15,7 @@
   ],
   "author": "Capricorncd",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "chalk": "^4.1.0",
     "clear": "^0.1.0",
     "commander": "^6.2.0",
