@@ -13,22 +13,21 @@ const { handleWebpackConfig } = require('./webpack')
 const { handlePackageJson } = require('./package-json')
 const { getHeader } = require('./header')
 const { createFiles } = require('./create-files')
-const { error } = require('../helper')
+const { log, info } = require('../helper')
 
 function fmtTypes(types) {
   const arr = [
     'other',
     'eslint',
-    'webpack'
+    'webpack',
+    'sass'
   ]
 
   if (!types || !Array.isArray(types) || types.length === 0) {
-    arr.push('babel', 'sass')
+    arr.push('babel')
   } else {
     arr.push(types.join(' '))
   }
-
-  // check typescript
 
   // Array deduplication
   return Array.from(new Set(arr))
@@ -41,26 +40,33 @@ function init(name, types) {
 
   const header = getHeader()
 
+  log('...eslintrc')
   // eslintrc
   fs.writeFileSync('./.eslintrc.js', header + getEslint(arr))
 
   // tsconfig.json
   if (arr.includes('ts') || arr.includes('typescript')) {
+    log('...tsconfig')
     fs.writeFileSync('./tsconfig.json', getTsConfig())
   }
 
+  log('...webpack.config')
   // webpack.config.js
   const { entry } = handleWebpackConfig(name, arr)
   // create index.js/ts file
   shell.mkdir('src')
-  createFiles(entry, name, header)
+  log('...init files')
+  createFiles(entry, name, arr)
   // fs.writeFileSync(entry, fileCode)
 
   shell.mkdir('static')
 
+  log('...babelrc')
   // babelrc
   fs.writeFileSync('./.babelrc', getBabelRc(arr))
 
+  info('...npm install')
+  log('...await')
   // install dev dependencies
   shell.exec(`npm i -D ${getPackages(arr)}`)
 }

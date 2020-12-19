@@ -6,11 +6,11 @@
 const { obj2str } = require('obj2str')
 
 const typescript = {
-  "presets": [
-    "@babel/preset-typescript"
+  'presets': [
+    '@babel/preset-typescript'
   ],
-  "plugins": [
-    "@babel/plugin-transform-typescript"
+  'plugins': [
+    '@babel/plugin-transform-typescript'
   ]
 }
 
@@ -18,12 +18,21 @@ const BABEL_RC = {
   ts: typescript,
   typescript,
   babel: {
-    "presets": [
-      "@babel/preset-env"
+    'presets': [
+      '@babel/preset-env'
     ],
-    "plugins": []
+    'plugins': []
+  },
+  react: {
+    'presets': [
+      '@babel/preset-env',
+      '@babel/preset-react'
+    ],
+    'plugins': []
   }
 }
+
+BABEL_RC.vue = BABEL_RC.babel
 
 function getBabelRc(arr) {
   let rc = {}

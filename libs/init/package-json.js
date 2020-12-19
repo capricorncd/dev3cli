@@ -5,7 +5,7 @@
  */
 const fs = require('fs-extra')
 const { obj2str } = require('obj2str')
-const { error } = require('../helper')
+const { error, log } = require('../helper')
 
 // handle package.json
 function handlePackageJson(name) {
@@ -25,10 +25,14 @@ function handlePackageJson(name) {
       main: './dist/index.js'
     }
 
-    fs.writeFileSync(path, obj2str(pkg, {
+    const pkgStr = obj2str(pkg, {
       doubleQuotes: true,
       keyQuote: true
-    }))
+    })
+
+    fs.writeFileSync(path, pkgStr)
+
+    log(pkgStr)
   } catch (e) {
     error(e)
   }

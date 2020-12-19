@@ -5,6 +5,7 @@ const { merge } = require('webpack-merge')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const EslintWebpackPlugin = require('eslint-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+//__IMPORT__
 // https://github.com/webpack-contrib/copy-webpack-plugin
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { formatDate } = require('date-utils-2020')
@@ -81,7 +82,8 @@ const baseConfig = {
     new HtmlWebpackPlugin({
       template: 'index.html',
       filename: 'index.html'
-    })
+    }),
+    //__GLOBAL_PLUGIN__
   ]
 }
 

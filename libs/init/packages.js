@@ -7,16 +7,17 @@ const PKG_TYPESCRIPT = [
   'typescript',
   'ts-node',
   'ts-loader',
+  '@babel/plugin-transform-typescript',
+  '@babel/preset-typescript',
+  '@typescript-eslint/eslint-plugin',
+  '@typescript-eslint/parser',
   '@types/node',
   '@types/react',
   '@types/react-dom',
   '@types/jest',
+  '@types/html-webpack-plugin',
   '@types/webpack',
-  '@types/webpack-dev-server',
-  '@babel/plugin-transform-typescript',
-  '@babel/preset-typescript',
-  '@typescript-eslint/eslint-plugin',
-  '@typescript-eslint/parser'
+  '@types/webpack-dev-server'
 ]
 
 const PKG_REACT = [
@@ -24,11 +25,13 @@ const PKG_REACT = [
   'react-dom',
   'react-router-dom',
   'prop-types',
-  '@babel/preset-react'
+  '@babel/preset-react',
+  'eslint-plugin-react'
 ]
 
 const PKG_VUE = [
   'eslint-plugin-vue',
+  'babel-eslint',
   'vue',
   'vue-loader',
   'vue-template-compiler'
@@ -56,7 +59,8 @@ const PKG_ESLINT = [
 const PKG_BABEL = [
   '@babel/core',
   '@babel/preset-env',
-  'babel-loader'
+  'babel-loader',
+  'babel-eslint'
 ]
 
 const PKG_SASS = [
@@ -74,7 +78,10 @@ const PKG_OTHER = [
 const PACKAGES = {
   ts: PKG_TYPESCRIPT,
   typescript: PKG_TYPESCRIPT,
-  react: PKG_REACT,
+  react: [
+    ...PKG_BABEL,
+    ...PKG_REACT
+  ],
   vue: PKG_VUE,
   webpack: PKG_WEBPACK,
   babel: PKG_BABEL,
@@ -86,7 +93,7 @@ const PACKAGES = {
 
 /**
  * get packages
- * @param types
+ * @param arr
  * @returns {string}
  */
 function getPackages(arr) {

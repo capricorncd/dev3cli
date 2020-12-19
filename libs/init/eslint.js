@@ -11,8 +11,7 @@ const eslintrcObj = {
     browser: true,
     node: true
   },
-  globals: {
-  },
+  globals: {},
   parserOptions: {
     // parser: 'babel-eslint',
     // https://eslint.org/docs/rules/rest-spread-spacing
@@ -21,7 +20,7 @@ const eslintrcObj = {
     sourceType: 'module'
   },
   extends: [
-    'standard',
+    'standard'
     // 'eslint:recommended',
     // 'plugin:@typescript-eslint/recommended'
   ],
@@ -32,7 +31,7 @@ const eslintrcObj = {
   rules: {
     'space-before-function-paren': 0,
     // 'brace-style': [2, 'stroustrup', { allowSingleLine: true }],
-    'brace-style': 0,
+    'brace-style': 0
     // '@typescript-eslint/explicit-function-return-type': 'off',
     // '@typescript-eslint/no-explicit-any': 'off',
     // '@typescript-eslint/no-use-before-define': 'off',
@@ -50,7 +49,7 @@ const typescript = {
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': 'off'
   }
 }
 
@@ -61,7 +60,26 @@ const ESLINTRC = {
     }
   },
   ts: typescript,
-  typescript
+  typescript,
+  vue: {
+    parserOptions: {
+      parser: 'babel-eslint'
+    },
+    extends: [
+      'plugin:vue/essential'
+    ],
+    plugins: [
+      'vue'
+    ]
+  },
+  react: {
+    parserOptions: {
+      parser: 'babel-eslint'
+    },
+    extends: [
+      'plugin:react/recommended'
+    ]
+  }
 }
 
 function getEslint(types) {

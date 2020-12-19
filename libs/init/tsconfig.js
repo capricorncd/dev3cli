@@ -31,13 +31,11 @@ const tsConfig = {
       ]
     },
     'types': [
-      '@types/node',
-      // '@nuxt/types'
+      '@types/node'
     ]
   },
   'exclude': [
     'node_modules',
-    '.nuxt',
     'dist'
   ]
 }
