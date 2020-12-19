@@ -1,7 +1,7 @@
 {
   "name": "dev3cli",
   "version": "0.0.3",
-  "description": "",
+  "description": "Quickly build command line interface for Web development environment.",
   "main": "index.js",
   "bin": {
     "dev3cli": "./index.js"
@@ -25,5 +25,13 @@
     "open": "^7.3.0",
     "replace-in-file": "^6.1.0",
     "shelljs": "^0.8.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/capricorncd/dev3cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/capricorncd/dev3cli/issues"
+  },
+  "homepage": "https://github.com/capricorncd/dev3cli#readme"
 }
