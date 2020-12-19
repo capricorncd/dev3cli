@@ -1,6 +1,6 @@
 # dev3cli
 
-Quickly build command line interface for Web development environment.
+Quickly build command line interface for Web front end development environment.
 
 Build by webpack, babel, sass and vue/react/typescript
 
