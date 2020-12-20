@@ -53,6 +53,34 @@ const typescript = {
   }
 }
 
+const tsVue = {
+  env: {
+    browser: true,
+    node: true
+  },
+  globals: {},
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module'
+  },
+  extends: [
+    'standard',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:vue/essential'
+  ],
+  plugins: [
+    '@typescript-eslint',
+    'vue'
+  ],
+  rules: {
+    'space-before-function-paren': 0,
+    'brace-style': 0,
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-use-before-define': 'off'
+  }
+}
+
 const ESLINTRC = {
   babel: {
     parserOptions: {
@@ -84,26 +112,36 @@ const ESLINTRC = {
 
 function getEslint(types) {
   // deep copy
-  const eslint = JSON.parse(JSON.stringify(eslintrcObj))
+  let eslint
 
-  let temp, tempValue, oldValue
-  types.forEach(type => {
-    temp = ESLINTRC[type]
-    if (!temp) return
-    Object.keys(temp).forEach(key => {
-      tempValue = temp[key]
-      oldValue = eslint[key]
-      if (isArray(oldValue)) {
-        eslint[key] = oldValue.concat(tempValue)
-      } else if (isObject(oldValue)) {
-        Object.keys(tempValue).forEach(k => {
-          eslint[key][k] = tempValue[k]
-        })
-      } else {
-        eslint[key] = tempValue
-      }
+  // ts & vue
+  if (types.includes('ts') && types.includes('vue')) {
+    eslint = tsVue
+  }
+  // else if (types.includes('ts') && types.includes('react')) {
+  //   eslint = tsVue
+  // }
+  else {
+    eslint = JSON.parse(JSON.stringify(eslintrcObj))
+    let temp, tempValue, oldValue
+    types.forEach(type => {
+      temp = ESLINTRC[type]
+      if (!temp) return
+      Object.keys(temp).forEach(key => {
+        tempValue = temp[key]
+        oldValue = eslint[key]
+        if (isArray(oldValue)) {
+          eslint[key] = oldValue.concat(tempValue)
+        } else if (isObject(oldValue)) {
+          Object.keys(tempValue).forEach(k => {
+            eslint[key][k] = tempValue[k]
+          })
+        } else {
+          eslint[key] = tempValue
+        }
+      })
     })
-  })
+  }
 
   return obj2str(eslint, {
     prefix: 'module.exports = '

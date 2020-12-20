@@ -15,11 +15,15 @@ const tsConfig = {
       'ESNext.AsyncIterable',
       'DOM'
     ],
+    'typeRoots': [
+      './types',
+      './src'
+    ],
     'esModuleInterop': true,
     'allowJs': true,
     'sourceMap': true,
     'strict': true,
-    'noEmit': true,
+    'noEmit': false,
     'experimentalDecorators': true,
     'baseUrl': '.',
     'paths': {
@@ -40,7 +44,10 @@ const tsConfig = {
   ]
 }
 
-function getTsConfig() {
+function getTsConfig(arr) {
+  if (arr.includes('vue')) {
+    tsConfig.compilerOptions.typeRoots.push('./node_modules/vue/types')
+  }
   return obj2str(tsConfig, {
     keyQuote: true,
     doubleQuotes: true

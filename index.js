@@ -12,7 +12,7 @@ const { spawn } = require('child_process')
 const { init } = require('./libs/init/index')
 const pkg = require('./package.json')
 const fs = require('fs-extra')
-const { info } = require('./libs/helper')
+const { info, error } = require('./libs/helper')
 
 program.version(pkg.version)
 
@@ -25,7 +25,9 @@ program.command('init <name>')
 
     // Check that the file exists
     if (fs.existsSync(dirPath)) {
-      throw new Error(`${name} directory already exists!`)
+      const errMsg = `The "${name}" directory already exists!`
+      error(errMsg)
+      throw new Error(errMsg)
     }
 
     // copy template(webpack.config.js. etc) files.

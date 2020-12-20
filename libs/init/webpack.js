@@ -12,12 +12,12 @@ const { SYS_EOL } = require('../constants')
 const RULES = {
   ts: {
     test: /\.tsx?$/,
-    use: 'ts-loader',
+    loader: 'ts-loader',
     exclude: /node_modules/
   },
   babel: {
     test: /\.jsx?$/,
-    use: 'babel-loader',
+    loader: 'babel-loader',
     exclude: /node_modules/
   },
   vue: {
@@ -40,17 +40,32 @@ const PLUGINS = {
 }
 
 function handleWebpackConfig(name, arr) {
-  let rules
   let fileExt = 'js'
   const importArr = []
   const globalPlugins = []
 
   // rules
+  const rules = []
   Object.keys(RULES).forEach(key => {
     if (arr.includes(key)) {
-      rules = RULES[key]
+      let temp = RULES[key]
+      if (key === 'ts') {
+        if (arr.includes('vue')) {
+          temp.options = { appendTsSuffixTo: [/\.vue$/] }
+        }
+      }
+      rules.push(temp)
     }
   })
+
+  let rulesStr = ''
+  if (rules.length > 0) {
+    rulesStr = rules.map(rule => {
+      return obj2str(rule, {
+        initSpaces: 6
+      })
+    }).join(',' + SYS_EOL)
+  }
 
   // plugins
   Object.keys(PLUGINS).forEach(key => {
@@ -65,7 +80,7 @@ function handleWebpackConfig(name, arr) {
     }
   })
 
-  if (arr.includes('ts') || arr.includes('typescript')) {
+  if (arr.includes('ts')) {
     fileExt = arr.includes('react') ? 'tsx' : 'ts'
   } else if (arr.includes('react')) {
     fileExt = 'jsx'
@@ -84,7 +99,7 @@ function handleWebpackConfig(name, arr) {
       to: [
         getHeader(),
         importArr.join(SYS_EOL),
-        rules ? obj2str(rules, { initSpaces: 6 }) : '',
+        rulesStr,
         fileExt,
         globalPlugins.join(`,${SYS_EOL}`)
       ]

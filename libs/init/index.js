@@ -26,7 +26,16 @@ function fmtTypes(types) {
   if (!types || !Array.isArray(types) || types.length === 0) {
     arr.push('babel')
   } else {
-    arr.push(types.join(' '))
+    arr.push(...types)
+  }
+
+  // typescript -> ts
+  if (arr.includes('typescript')) {
+    arr.forEach((type, index) => {
+      if (type === 'typescript') {
+        arr[index] = 'ts'
+      }
+    })
   }
 
   // Array deduplication
@@ -37,6 +46,7 @@ function init(name, types) {
   handlePackageJson(name)
 
   const arr = fmtTypes(types)
+  info('types:', arr)
 
   const header = getHeader()
 
@@ -45,9 +55,9 @@ function init(name, types) {
   fs.writeFileSync('./.eslintrc.js', header + getEslint(arr))
 
   // tsconfig.json
-  if (arr.includes('ts') || arr.includes('typescript')) {
+  if (arr.includes('ts')) {
     log('...tsconfig')
-    fs.writeFileSync('./tsconfig.json', getTsConfig())
+    fs.writeFileSync('./tsconfig.json', getTsConfig(arr))
   }
 
   log('...webpack.config')
@@ -69,6 +79,7 @@ function init(name, types) {
   log('...await')
   // install dev dependencies
   shell.exec(`npm i -D ${getPackages(arr)}`)
+  info('...packages is installed')
 }
 
 module.exports = {

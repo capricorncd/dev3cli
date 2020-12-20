@@ -4,22 +4,93 @@
  * Date: 2020-12-18 17:10
  */
 const fs = require('fs-extra')
+const shell = require('shelljs')
 const { getHeader } = require('./header')
 const { SYS_EOL } = require('../constants')
 
 function createFiles(entry, name, arr) {
+  // create scss file
+  const sassCode = [
+    `h1 { color: red; }`
+  ]
+  fs.writeFileSync('src/style.scss', sassCode.join(SYS_EOL))
+
+  // create js/vue/react files
   const importSass = `import './style.scss'`
-  const blackLint = ''
+  const blankLine = ''
   const jsCode = [
     getHeader()
   ]
 
+  // typescript
+  if (arr.includes('ts')) {
+    if (arr.includes('vue')) {
+      jsCode.push(
+        'import Vue from \'vue\'',
+        'import App from \'./App.vue\'',
+        importSass,
+        blankLine,
+        '/* eslint-disable no-new */',
+        'new Vue({',
+        '  el: \'#app\',',
+        '  render: h => h(App)',
+        '})'
+      )
+
+      // create App.vue
+      const appVueCode = [
+        '<template>',
+        '  <div>',
+        '    <h1>{{title}}</h1>',
+        '    <p>This is a project developed using the Vue framework and Typescript。</p>',
+        '  </div>',
+        '</template>',
+        blankLine,
+        '<script lang="ts">',
+        'import Vue from \'vue\'',
+        blankLine,
+        'export default Vue.extend({',
+        '  data () {',
+        '    return {',
+        '      title: \'Page Title\'',
+        '    }',
+        '  }',
+        '})',
+        '</script>',
+        blankLine,
+        '<style lang="scss">',
+        'h1 {',
+        '  font-size: 50px;',
+        '}',
+        'p {',
+        '  font-size: 24px;',
+        '}',
+        '</style>'
+      ]
+      fs.writeFileSync('src/App.vue', appVueCode.join(SYS_EOL))
+
+      // create types files
+      const typesFile = [
+        'declare module \'*.vue\' {',
+        '  import Vue from \'vue\';',
+        '  export default Vue;',
+        '}'
+      ]
+      shell.mkdir('types')
+      fs.writeFileSync('types/index.d.ts', typesFile.join(SYS_EOL))
+    }
+
+    fs.writeFileSync(entry, jsCode.join(SYS_EOL))
+    return
+  }
+
+  // javascript
   if (arr.includes('vue')) {
     jsCode.push(
       'import Vue from \'vue\'',
       'import App from \'./App\'',
       importSass,
-      blackLint,
+      blankLine,
       '/* eslint-disable no-new */',
       'new Vue({',
       '  el: \'#app\',',
@@ -35,12 +106,12 @@ function createFiles(entry, name, arr) {
       '    <p>This is a project developed using the Vue framework。</p>',
       '  </div>',
       '</template>',
-      blackLint,
+      blankLine,
       '<script>',
       'export default {',
       '}',
       '</script>',
-      blackLint,
+      blankLine,
       '<style lang="scss">',
       'h1 {',
       '  font-size: 50px;',
@@ -57,7 +128,7 @@ function createFiles(entry, name, arr) {
       'import ReactDom from \'react-dom\'',
       'import App from \'./App\'',
       importSass,
-      blackLint,
+      blankLine,
       'ReactDom.render(<App/>, document.querySelector(\'#app\'))'
     )
 
@@ -70,7 +141,7 @@ function createFiles(entry, name, arr) {
       '  Route,',
       '  Link',
       '} from \'react-router-dom\'',
-      blackLint,
+      blankLine,
       'function App () {',
       '  return (',
       '    <Router>',
@@ -87,24 +158,19 @@ function createFiles(entry, name, arr) {
       '    </Router>',
       '  )',
       '}',
-      blackLint,
+      blankLine,
       'export default App'
     ]
     fs.writeFileSync('src/App.jsx', appReact.join(SYS_EOL))
   } else {
     jsCode.push(
       importSass,
-      blackLint,
+      blankLine,
       `document.querySelector('#app').innerHTML = '<h1>${name}</h1>'`
     )
   }
 
-  const sassCode = [
-    `h1 { color: red; }`
-  ]
-
   fs.writeFileSync(entry, jsCode.join(SYS_EOL))
-  fs.writeFileSync('src/style.scss', sassCode.join(SYS_EOL))
 }
 
 module.exports = {
