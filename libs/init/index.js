@@ -12,7 +12,7 @@ const { getBabelRc } = require('./babel')
 const { handleWebpackConfig } = require('./webpack')
 const { handlePackageJson } = require('./package-json')
 const { getHeader } = require('./header')
-const { createFiles } = require('./create-files')
+const { createFiles } = require('./create-files/index')
 const { log, info } = require('../helper')
 
 function fmtTypes(types) {
@@ -76,7 +76,7 @@ function init(name, types) {
   fs.writeFileSync('./.babelrc', getBabelRc(arr))
 
   info('...npm install')
-  log('...await')
+  log('waiting ...')
   // install dev dependencies
   shell.exec(`npm i -D ${getPackages(arr)}`)
   info('...packages is installed')

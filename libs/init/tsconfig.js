@@ -20,6 +20,9 @@ const tsConfig = {
       './src'
     ],
     'esModuleInterop': true,
+    'outDir': './dist/',
+    'noImplicitAny': true,
+    'jsx': 'react',
     'allowJs': true,
     'sourceMap': true,
     'strict': true,

@@ -22,29 +22,29 @@ npm i -g dev3cli
 yarn global add dev3cli
 ```
 
-## Usage
-
-default project
+## Create a New Project
 
 ```shell script
 dev3cli init project-name
 ```
 
-### Vue project
+### use Vue
 
 ```shell script
 dev3cli init project-name vue
-# and typescript
+# use typescript
 dev3cli init project-name vue ts
 ```
 
-### React project
+### use React
 
 ```shell script
 dev3cli init project-name react
+# use typescript
+dev3cli init project-name react ts
 ```
 
-### only typescript project
+### use typescript only
 
 ```shell script
 dev3cli init project-name typescript

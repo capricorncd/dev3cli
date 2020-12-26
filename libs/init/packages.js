@@ -14,6 +14,7 @@ const PKG_TYPESCRIPT = [
   '@types/node',
   '@types/react',
   '@types/react-dom',
+  '@types/react-router-dom',
   '@types/jest',
   '@types/html-webpack-plugin',
   '@types/webpack',
