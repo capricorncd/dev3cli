@@ -28,20 +28,20 @@ yarn global add dev3cli
 dev3cli init project-name
 ```
 
-### use Vue
-
-```shell script
-dev3cli init project-name vue
-# use typescript
-dev3cli init project-name vue ts
-```
-
 ### use React
 
 ```shell script
 dev3cli init project-name react
 # use typescript
 dev3cli init project-name react ts
+```
+
+### use Vue
+
+```shell script
+dev3cli init project-name vue
+# use typescript
+dev3cli init project-name vue ts
 ```
 
 ### use typescript only
