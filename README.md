@@ -51,3 +51,12 @@ dev3cli init project-name typescript
 # or
 dev3cli init project-name ts
 ```
+
+## Run the project
+
+```shell script
+# cd project-name
+npm run dev
+```
+
+The project will run at `http://0.0.0.0:4000/` or `http://localhost/:4000/`
