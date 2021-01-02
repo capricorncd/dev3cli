@@ -41,7 +41,8 @@ program.command('init <name>')
 
     info(`
       cd ${name}
-      ${pkg.name} run
+      npm run dev
+      The project will run at http://0.0.0.0:4000 or http://localhost/:4000
     `)
   })
 
