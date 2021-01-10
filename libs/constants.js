@@ -7,6 +7,9 @@ const os = require('os')
 
 const SYS_EOL = os.EOL
 
+const BLANK_LINE = ''
+
 module.exports = {
-  SYS_EOL
+  SYS_EOL,
+  BLANK_LINE,
 }

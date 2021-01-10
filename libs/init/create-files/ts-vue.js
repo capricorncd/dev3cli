@@ -4,15 +4,14 @@
  * Date: 2020-12-26 17:01
  */
 const fs = require('fs-extra')
-const shell = require('shelljs')
-const { SYS_EOL } = require('../../constants')
+const { SYS_EOL, BLANK_LINE } = require('../../constants')
 
-function createTsVue(jsCode, importSass, blankLine) {
+function createTsVue(jsCode, importSass, typesCode) {
   jsCode.push(
     'import Vue from \'vue\'',
     'import App from \'./App.vue\'',
     importSass,
-    blankLine,
+    BLANK_LINE,
     '/* eslint-disable no-new */',
     'new Vue({',
     '  el: \'#app\',',
@@ -28,10 +27,10 @@ function createTsVue(jsCode, importSass, blankLine) {
     '    <p>This is a project developed using the Vue framework and Typescript。</p>',
     '  </div>',
     '</template>',
-    blankLine,
+    BLANK_LINE,
     '<script lang="ts">',
     'import Vue from \'vue\'',
-    blankLine,
+    BLANK_LINE,
     'export default Vue.extend({',
     '  data () {',
     '    return {',
@@ -40,7 +39,7 @@ function createTsVue(jsCode, importSass, blankLine) {
     '  }',
     '})',
     '</script>',
-    blankLine,
+    BLANK_LINE,
     '<style lang="scss">',
     'h1 {',
     '  font-size: 50px;',
@@ -53,14 +52,12 @@ function createTsVue(jsCode, importSass, blankLine) {
   fs.writeFileSync('src/App.vue', appVueCode.join(SYS_EOL))
 
   // create types files
-  const typesFile = [
+  typesCode.push(
     'declare module \'*.vue\' {',
     '  import Vue from \'vue\';',
     '  export default Vue;',
     '}'
-  ]
-  shell.mkdir('types')
-  fs.writeFileSync('types/index.d.ts', typesFile.join(SYS_EOL))
+  )
 }
 
 module.exports = {

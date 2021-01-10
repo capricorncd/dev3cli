@@ -4,15 +4,15 @@
  * Date: 2020-12-26 17:14
  */
 const fs = require('fs-extra')
-const { SYS_EOL } = require('../../constants')
+const { SYS_EOL, BLANK_LINE } = require('../../constants')
 
-function createTsReact(jsCode, importSass, blankLine) {
+function createTsReact(jsCode, importSass, typesCode) {
   jsCode.push(
     'import React from \'react\'',
     'import ReactDom from \'react-dom\'',
     'import App from \'./App\'',
     importSass,
-    blankLine,
+    BLANK_LINE,
     'ReactDom.render(<App/>, document.querySelector(\'#app\'))'
   )
 
@@ -25,7 +25,7 @@ function createTsReact(jsCode, importSass, blankLine) {
     '  Route,',
     '  Link',
     '} from \'react-router-dom\'',
-    blankLine,
+    BLANK_LINE,
     'function App (): React.ReactElement {',
     '  return (',
     '    <Router>',
@@ -42,7 +42,7 @@ function createTsReact(jsCode, importSass, blankLine) {
     '    </Router>',
     '  )',
     '}',
-    blankLine,
+    BLANK_LINE,
     'export default App'
   ]
   fs.writeFileSync('src/App.tsx', appReact.join(SYS_EOL))

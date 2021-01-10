@@ -21,7 +21,7 @@ function handlePackageJson(name) {
         dev: 'webpack serve',
         build: 'webpack --mode production'
       },
-      keywords: [name],
+      keywords: [name, 'dev3li'],
       main: './dist/index.js'
     }
 

@@ -62,6 +62,8 @@ const tsVue = {
   },
   globals: {},
   parserOptions: {
+    // fix: Parsing error: '}' expected -> App.vue
+    parser: 'babel-eslint',
     ecmaVersion: 2020,
     sourceType: 'module'
   },

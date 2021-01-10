@@ -12,7 +12,7 @@ const { spawn } = require('child_process')
 const { init } = require('./libs/init/index')
 const pkg = require('./package.json')
 const fs = require('fs-extra')
-const { info, error } = require('./libs/helper')
+const { log, error } = require('./libs/helper')
 
 program.version(pkg.version)
 
@@ -39,7 +39,7 @@ program.command('init <name>')
     const args = process.argv.slice(4)
     init(name, args)
 
-    info(`
+    log(`
       cd ${name}
       npm run dev
       The project will run at http://0.0.0.0:4000 or http://localhost/:4000
