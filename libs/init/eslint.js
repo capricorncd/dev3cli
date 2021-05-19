@@ -50,6 +50,7 @@ const typescript = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
     // 'React' was used before it was defined
     'no-use-before-define': 'off'
   }
@@ -81,6 +82,7 @@ const tsVue = {
     'brace-style': 0,
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-use-before-define': 'off'
   }
 }

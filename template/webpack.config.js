@@ -32,7 +32,7 @@ const baseConfig = {
   resolve: {
     extensions: ['.js', '.vue', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
-      '~': resolve('./')
+      '@': resolve('./')
     }
   },
   module: {

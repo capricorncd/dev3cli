@@ -30,9 +30,6 @@ const tsConfig = {
     'experimentalDecorators': true,
     'baseUrl': '.',
     'paths': {
-      '~/*': [
-        './*'
-      ],
       '@/*': [
         './*'
       ]
