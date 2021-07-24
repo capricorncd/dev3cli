@@ -30,20 +30,29 @@ program.command('init <name>')
       throw new Error(errMsg)
     }
 
+    // process arguments
+    const args = process.argv.slice(4)
+
+    // vite check
+    if (args.includes('vite')) {
+      if (args.includes('react')) {
+        shell.cp('-R', resolve(__dirname, './vite-react'), dirPath)
+        shell.cp('-R', resolve(__dirname, './template/.gitignore'), dirPath)
+        shell.cd(dirPath)
+        shell.exec(`npm i`)
+        echoEndedInfo()
+        return
+      }
+    }
+
     // copy template(webpack.config.js. etc) files.
     shell.cp('-R', resolve(__dirname, './template'), dirPath)
     shell.cd(dirPath)
     // shell.exec('npm init -y')
 
-    // process arguments
-    const args = process.argv.slice(4)
     init(name, args)
 
-    log(`
-      cd ${name}
-      npm run dev
-      The project will run at http://0.0.0.0:4000 or http://localhost/:4000
-    `)
+    echoEndedInfo()
   })
 
 // run
@@ -71,3 +80,11 @@ program.command('start')
   })
 
 program.parse(process.argv)
+
+function echoEndedInfo() {
+  log(`
+      cd ${name}
+      npm run dev
+      The project will run at http://0.0.0.0:4000 or http://localhost/:4000
+    `)
+}
