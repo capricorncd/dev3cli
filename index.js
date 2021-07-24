@@ -39,7 +39,7 @@ program.command('init <name>')
         shell.cp('-R', resolve(__dirname, './vite-react'), dirPath)
         shell.cd(dirPath)
         shell.exec(`npm i`)
-        echoEndedInfo()
+        echoEndedInfo(name)
         return
       }
     }
@@ -51,7 +51,7 @@ program.command('init <name>')
 
     init(name, args)
 
-    echoEndedInfo()
+    echoEndedInfo(name)
   })
 
 // run
@@ -80,7 +80,7 @@ program.command('start')
 
 program.parse(process.argv)
 
-function echoEndedInfo() {
+function echoEndedInfo(name) {
   log(`
       cd ${name}
       npm run dev
