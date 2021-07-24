@@ -37,7 +37,6 @@ program.command('init <name>')
     if (args.includes('vite')) {
       if (args.includes('react')) {
         shell.cp('-R', resolve(__dirname, './vite-react'), dirPath)
-        shell.cp('-R', resolve(__dirname, './template/.gitignore'), dirPath)
         shell.cd(dirPath)
         shell.exec(`npm i`)
         echoEndedInfo()
