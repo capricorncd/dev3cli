@@ -19,6 +19,7 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
+    port: 4000,
     // https://github.com/http-party/node-http-proxy#options
     proxy: {
       // '/api': {

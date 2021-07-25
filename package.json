@@ -1,11 +1,9 @@
 {
   "name": "dev3cli",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Quickly build command line interface for Web development environment.",
   "main": "index.js",
-  "bin": {
-    "dev3cli": "./index.js"
-  },
+  "bin": "./index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

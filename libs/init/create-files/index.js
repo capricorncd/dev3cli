@@ -11,6 +11,7 @@ const { createTsVue } = require('./ts-vue')
 const { createTsReact } = require('./ts-react')
 const { createVue } = require('./vue')
 const { createReact } = require('./react')
+const { createReadmeFile } = require('./readme')
 
 function createFiles(entry, name, arr) {
   // create scss file
@@ -20,28 +21,7 @@ function createFiles(entry, name, arr) {
   ]
   fs.writeFileSync('src/style.scss', sassCode.join(SYS_EOL))
 
-  // create README.md
-  const readmeCode = [
-    `# ${name}`,
-    BLANK_LINE,
-    'This project was created by the <a href="https://github.com/capricorncd/dev3cli" target="_blank">dev3cli</a> command tool.',
-    'https://github.com/capricorncd/dev3cli',
-    BLANK_LINE,
-    '## Build Setup',
-    BLANK_LINE,
-    '```bash',
-    '# serve with hot reload at localhost:4000',
-    '$ npm run dev',
-    '# or',
-    '$ yarn dev',
-    BLANK_LINE,
-    '# build static project',
-    '$ npm run build',
-    '# or',
-    '$ yarn build',
-    '```',
-  ]
-  fs.writeFileSync('README.md', readmeCode.join(SYS_EOL))
+  createReadmeFile(name)
 
   // create js/vue/react files
   const importSass = `import './style.scss'`
@@ -90,5 +70,6 @@ function createFiles(entry, name, arr) {
 }
 
 module.exports = {
-  createFiles
+  createFiles,
+  createReadmeFile,
 }

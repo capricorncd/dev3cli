@@ -12,7 +12,10 @@ const { spawn } = require('child_process')
 const { init } = require('./libs/init/index')
 const pkg = require('./package.json')
 const fs = require('fs-extra')
-const { log, error } = require('./libs/helper')
+const { log, error, getIPAddress } = require('./libs/helper')
+const { createReadmeFile } = require('./libs/init/create-files')
+
+const ipAddress = getIPAddress()
 
 program.version(pkg.version)
 
@@ -39,6 +42,7 @@ program.command('init <name>')
         shell.cp('-R', resolve(__dirname, './vite-react'), dirPath)
         shell.cd(dirPath)
         shell.exec(`npm i`)
+        createReadmeFile(name)
         echoEndedInfo(name)
         return
       }
@@ -84,6 +88,7 @@ function echoEndedInfo(name) {
   log(`
       cd ${name}
       npm run dev
-      The project will run at http://0.0.0.0:4000 or http://localhost/:4000
+      The project will run at
+      http://${ipAddress}:4000 or http://localhost:4000
     `)
 }

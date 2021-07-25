@@ -37,9 +37,24 @@ function isFunction(fn) {
   return typeof fn === 'function'
 }
 
+function getIPAddress() {
+  const interfaces = require('os').networkInterfaces()
+  let temp
+  for (let devName in interfaces) {
+    temp = interfaces[devName]
+    for (let i = 0; i < temp.length; i++) {
+      let alias = temp[i]
+      if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+        return alias.address
+      }
+    }
+  }
+}
+
 module.exports = {
   log,
   error,
+  getIPAddress,
   warn,
   info,
   isObject,
