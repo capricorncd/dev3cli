@@ -1,0 +1,34 @@
+{
+  "name": "vite-vue-typescript",
+  "version": "0.0.1",
+  "private": true,
+  "author": "capricorncd",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.1.5"
+  },
+  "devDependencies": {
+    "@types/node": "^15.12.2",
+    "@typescript-eslint/eslint-plugin": "^4.28.4",
+    "@typescript-eslint/parser": "^4.28.4",
+    "@vitejs/plugin-vue": "^1.2.5",
+    "@vue/compiler-sfc": "^3.1.5",
+    "eslint": "^7.31.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-vue": "^7.14.0",
+    "prettier": "^2.3.2",
+    "sass": "^1.34.1",
+    "typescript": "^4.3.2",
+    "vite": "^2.3.7",
+    "vite-plugin-eslint": "^1.3.0"
+  },
+  "github": {
+    "home": "https://github.com/capricorncd/dev3cli"
+  },
+  "license": "MIT"
+}

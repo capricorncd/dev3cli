@@ -38,7 +38,9 @@ program.command('init <name>')
 
     // vite check
     if (args.includes('vite')) {
+      // vite react
       if (args.includes('react')) {
+        log(`create vite-react application: ${name} ...`)
         shell.cp('-R', resolve(__dirname, './vite-react'), dirPath)
         shell.cd(dirPath)
         shell.exec(`npm i`)
@@ -46,6 +48,16 @@ program.command('init <name>')
         echoEndedInfo(name)
         return
       }
+      // vite vue3
+      // if (args.includes('vue')) {
+        log(`create vite-vue application: ${name} ...`)
+        shell.cp('-R', resolve(__dirname, './vite-vue'), dirPath)
+        shell.cd(dirPath)
+        shell.exec(`npm i`)
+        createReadmeFile(name)
+        echoEndedInfo(name)
+        return
+      // }
     }
 
     // copy template(webpack.config.js. etc) files.

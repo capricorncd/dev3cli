@@ -1,8 +1,12 @@
 # dev3cli
 
+自己用的Web前端工程初始化工具，支持`vite vue3.x/react`(eslint/prettier/typescript), `webpack es6/vue2.x/react/typescript`(eslint)。
+
 Quickly build command line interface for Web front end development environment.
 
-Build by webpack, babel, eslint, sass/scss and vue/react/typescript
+Build by webpack, vue/react/typescript and babel/eslint/sass/scss
+
+And vite, vue3 `dev3cli init ProjectName vite`
 
 And vite, react `dev3cli init ProjectName vite react`
 
@@ -30,7 +34,19 @@ yarn global add dev3cli
 dev3cli init project-name
 ```
 
-### use React
+### use vite-vue3
+
+```shell script
+dev3cli init project-name vite
+```
+
+### use vite-react
+
+```shell script
+dev3cli init project-name vite react
+```
+
+### use React(webpack)
 
 ```shell script
 dev3cli init project-name react
@@ -38,7 +54,7 @@ dev3cli init project-name react
 dev3cli init project-name react ts
 ```
 
-### use Vue
+### use Vue2.x(webpack)
 
 ```shell script
 dev3cli init project-name vue
@@ -46,18 +62,12 @@ dev3cli init project-name vue
 dev3cli init project-name vue ts
 ```
 
-### use typescript only
+### use typescript only(webpack)
 
 ```shell script
 dev3cli init project-name typescript
 # or
 dev3cli init project-name ts
-```
-
-### use vite-react
-
-```shell script
-dev3cli init project-name vite react
 ```
 
 ## Run the project

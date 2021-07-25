@@ -1,6 +1,6 @@
 {
   "name": "dev3cli",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Quickly build command line interface for Web development environment.",
   "main": "index.js",
   "bin": "./index.js",
@@ -13,7 +13,8 @@
     "vue",
     "react",
     "typescript",
-    "vite"
+    "vite",
+    "vue3"
   ],
   "author": "Capricorncd",
   "license": "MIT",
