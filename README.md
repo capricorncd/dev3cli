@@ -34,13 +34,13 @@ yarn global add dev3cli
 dev3cli init project-name
 ```
 
-### use vite-vue3
+### use vite/vue3.x
 
 ```shell script
 dev3cli init project-name vite
 ```
 
-### use vite-react
+### use vite/react
 
 ```shell script
 dev3cli init project-name vite react
