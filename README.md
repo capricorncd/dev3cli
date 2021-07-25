@@ -77,4 +77,4 @@ dev3cli init project-name ts
 npm run dev
 ```
 
-The project will run at `http://0.0.0.0:4000/` or `http://localhost/:4000/`
+The project will run at `http://0.0.0.0:4000/` or `http://localhost:4000/`
