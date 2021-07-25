@@ -6,9 +6,9 @@ Quickly build command line interface for Web front end development environment.
 
 Build by webpack, vue/react/typescript and babel/eslint/sass/scss
 
-And vite, vue3 `dev3cli init ProjectName vite`
+When using vite/vue3, execute the command: `dev3cli init ProjectName vite`
 
-And vite, react `dev3cli init ProjectName vite react`
+When using vite/react, execute the width command: `dev3cli init ProjectName vite react`
 
 <p align="left">
   <a href="https://npmcharts.com/compare/dev3cli?minimal=true"><img src="https://img.shields.io/npm/dm/dev3cli.svg?sanitize=true" alt="Downloads"></a>
