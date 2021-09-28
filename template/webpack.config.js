@@ -115,7 +115,8 @@ module.exports = isProd
     devtool: 'inline-source-map',
     devServer: {
       // publicPath: './dist',
-      useLocalIp: true,
+      // Fixed: options has an unknown property 'useLocalIp'
+      // useLocalIp: true,
       host: '0.0.0.0',
       port: 4000
     },
