@@ -42,6 +42,7 @@ program.command('init <name>')
       if (args.includes('react')) {
         log(`create vite-react application: ${name} ...`)
         shell.cp('-R', resolve(__dirname, './vite-react'), dirPath)
+        shell.cp('-R', resolve(__dirname, './gitignore'), dirPath + '/.gitignore')
         shell.cd(dirPath)
         shell.exec(`npm i`)
         createReadmeFile(name)
@@ -52,6 +53,7 @@ program.command('init <name>')
       // if (args.includes('vue')) {
         log(`create vite-vue application: ${name} ...`)
         shell.cp('-R', resolve(__dirname, './vite-vue'), dirPath)
+        shell.cp('-R', resolve(__dirname, './gitignore'), dirPath + '/.gitignore')
         shell.cd(dirPath)
         shell.exec(`npm i`)
         createReadmeFile(name)
@@ -62,6 +64,7 @@ program.command('init <name>')
 
     // copy template(webpack.config.js. etc) files.
     shell.cp('-R', resolve(__dirname, './template'), dirPath)
+    shell.cp('-R', resolve(__dirname, './gitignore'), dirPath + '/.gitignore')
     shell.cd(dirPath)
     // shell.exec('npm init -y')
 
