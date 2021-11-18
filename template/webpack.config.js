@@ -28,6 +28,11 @@ const baseConfig = {
     libraryTarget: 'umd',
     globalObject: 'typeof self !== \'undefined\' ? self : this',
     // umdNamedDefine: true,
+    // library: {
+    //   name: 'LibraryName',
+    //   type: 'umd2',
+    //   export: 'default', // index.[js, ts], export default class LibraryName{}
+    // },
   },
   resolve: {
     extensions: ['.js', '.vue', '.jsx', '.ts', '.tsx', '.json'],
@@ -114,9 +119,7 @@ module.exports = isProd
   : merge(baseConfig, {
     devtool: 'inline-source-map',
     devServer: {
-      // publicPath: './dist',
-      // Fixed: options has an unknown property 'useLocalIp'
-      // useLocalIp: true,
+      // static: './',
       host: '0.0.0.0',
       port: 4000
     },
